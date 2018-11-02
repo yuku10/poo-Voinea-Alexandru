@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1540930195 source:c:\users\alexandru voinea\desktop\poo\1\main.cpp
+	<iostream>
+
+1541153949 source:c:\users\alexandru voinea\desktop\poo\1 - copy\main.cpp
+	<iostream>
+	<math.h>
+	"complex.h"
+	"complex.cpp"
+
+1541153799 c:\users\alexandru voinea\desktop\poo\1 - copy\complex.h
+
+1541153922 c:\users\alexandru voinea\desktop\poo\1 - copy\complex.cpp
+
