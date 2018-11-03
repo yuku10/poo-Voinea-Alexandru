@@ -2,12 +2,31 @@
 #include <math.h>
 #include "complex.h"
 #include "complex.cpp"
+#include <sstream>
+#include <string>
 int main()
 {
     complex z1;
     z1.read();
     complex z2;
     z2.read();
+   // std::string numar;
+   // numar=ToString(z2);
+   // std::cout<<numar<<"\n";
+    //std::cout<<ToString(z1)<<"\n";
+    std::string numar1;
+    std::cin>>numar1;
+    //std::cout<<numar1<<"\n|";
+    try
+    {
+    complex z15=complex(numar1);
+    //std::cout<<z15<<"\n";
+    }
+     catch(const std::runtime_error&e)
+    {
+        std::cout<<e.what();
+    }
+    std::cout<<"\n";
     /*complex z3;
     z3=+(z1);
     z3.print();
@@ -93,6 +112,23 @@ int main()
     std::cout<<"\n Modulul unui numar complex:";
     double m;
     m=abs(z1);
-    std::cout<<m;
+    std::cout<<m<<"\n";
+    /*try
+    {
+    complex z20=z1/z2;
+    }
+    catch(const std::runtime_error&e)
+    {
+        std::cout<<e.what();
+    }*/
+    std::cout<<"\n";
+    try
+    {
+        z1/=z2;
+    }
+    catch(const std::runtime_error&e)
+    {
+        std::cout<<e.what();
+    }
     return 0;
 }
