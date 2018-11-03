@@ -24,7 +24,8 @@ complex::complex(std::string &stream)
 {
     double p_r,p_i;
     int pos_i=stream.find("i");
-    if(pos_i==-1 && p_r==0) throw std::runtime_error("Nu este un numar complex");
+    if(pos_i==-1 && p_r==0)
+        throw std::runtime_error("Nu este un numar complex");
     else if(pos_i==-1 )
     {
         std::stringstream r_stream(stream);
@@ -32,19 +33,19 @@ complex::complex(std::string &stream)
         p_i=0;
     }
     else if(pos_i==0 || pos_i==1)
-            p_r=0;
-        else
-        {
-            std::string s_re=stream.substr(0,pos_i-1);
-            std::stringstream r_stream(s_re);
-            r_stream>>p_r;
-        }
-        std::string s_im=stream.substr(pos_i+2);
-        std::stringstream i_stream(s_im);
-        i_stream>>p_i;
-        std::string s_i_sign=stream.substr(pos_i-1,1);
-        if(s_i_sign=="-")
-            p_i*=-1;
+        p_r=0;
+    else
+    {
+        std::string s_re=stream.substr(0,pos_i-1);
+        std::stringstream r_stream(s_re);
+        r_stream>>p_r;
+    }
+    std::string s_im=stream.substr(pos_i+2);
+    std::stringstream i_stream(s_im);
+    i_stream>>p_i;
+    std::string s_i_sign=stream.substr(pos_i-1,1);
+    if(s_i_sign=="-")
+        p_i*=-1;
 
 
 }
@@ -303,14 +304,16 @@ complex& complex:: operator*=(const double d_number)
 complex& complex:: operator/=(const complex&z_complex)
 {
     std::cout<<"Operator/=";
-    if(z_complex.a==0 && z_complex.b==0) throw std::runtime_error("Nu se poate face impartirea");
+    if(z_complex.a==0 && z_complex.b==0)
+        throw std::runtime_error("Nu se poate face impartirea");
     else (*this)=(*this)/z_complex;
     return *this;
 }
 complex& complex:: operator/=(const double d_number)
 {
     std::cout<<"Operator2/=";
-    if(d_number==0) throw std::runtime_error("Nu se poate face impartirea");
+    if(d_number==0)
+        throw std::runtime_error("Nu se poate face impartirea");
     else (*this)=(*this)/d_number;
     return *this;
 }
