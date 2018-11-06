@@ -1,18 +1,18 @@
 # depslib dependency file v1.0
-1540930195 source:c:\users\alexandru voinea\desktop\poo\1\main.cpp
-	<iostream>
-
-1541287781 source:c:\users\alexandru voinea\desktop\poo\1 - copy\main.cpp
+1541493179 source:c:\users\alexandru voinea\desktop\poo\1 - copy\main.cpp
 	<iostream>
 	<math.h>
 	"complex.h"
 	"complex.cpp"
 	<sstream>
 	<string>
+	<math.h>
 
-1541276696 c:\users\alexandru voinea\desktop\poo\1 - copy\complex.h
+1541438003 c:\users\alexandru voinea\desktop\poo\1 - copy\complex.h
 	<sstream>
 	<string>
+	<cmath>
+	<math.h>
 
-1541286849 c:\users\alexandru voinea\desktop\poo\1 - copy\complex.cpp
+1541493172 c:\users\alexandru voinea\desktop\poo\1 - copy\complex.cpp
 

@@ -1,9 +1,9 @@
 
-double complex::getRe()
+double complex::getRe() const
 {
     return a;
 }
-double complex::getIm()
+double complex::getIm() const
 {
     return b;
 }
@@ -24,29 +24,50 @@ complex::complex(std::string &stream)
 {
     double p_r,p_i;
     int pos_i=stream.find("i");
-    if(pos_i==-1 && p_r==0)
-        throw std::runtime_error("Nu este un numar complex");
-    else if(pos_i==-1 )
+    int ok=0;
+
+    if(stream.at(0)=='i')
+    {
+        ok=1;
+        p_r=0;
+        stream.erase(0);
+        std::stringstream r_stream(stream);
+        r_stream>>p_i;
+
+    }
+    else
+    if(pos_i==-1 )
     {
         std::stringstream r_stream(stream);
         r_stream>>p_r;
+        if(p_r!=0)
+            ok=1;
         p_i=0;
     }
-    else if(pos_i==0 || pos_i==1)
-        p_r=0;
     else
     {
-        std::string s_re=stream.substr(0,pos_i-1);
-        std::stringstream r_stream(s_re);
-        r_stream>>p_r;
-    }
-    std::string s_im=stream.substr(pos_i+2);
-    std::stringstream i_stream(s_im);
-    i_stream>>p_i;
-    std::string s_i_sign=stream.substr(pos_i-1,1);
-    if(s_i_sign=="-")
-        p_i*=-1;
+        if(pos_i==0 || pos_i==1)
+        {
+            ok=1;
+            p_r=0;
+        }
+        else if(pos_i>1)
+        {
+            ok=1;
+            std::string s_re=stream.substr(0,pos_i-1);
+            std::stringstream r_stream(s_re);
+            r_stream>>p_r;
+        }
+        std::string s_im=stream.substr(pos_i+2);
+        std::stringstream i_stream(s_im);
+        i_stream>>p_i;
+        std::string s_i_sign=stream.substr(pos_i-1,1);
+        if(s_i_sign=="-")
+            p_i*=-1;
 
+    }
+    if(ok==0)
+        throw std::runtime_error("Nu este numar complex");
 
 }
 std::string ToString(const complex&z_complex)
@@ -323,9 +344,36 @@ complex complex::Conjugate(const complex& z_complex)
     b=-z_complex.b;
     return *this;
 }
-double abs(complex&z_complex)
+double abs(const complex& z_complex)
 {
     return sqrt(z_complex.a*z_complex.a+z_complex.b*z_complex.b);
+}
+
+complex sqrt(complex&z_complex)
+    {
+        if(z_complex.getIm()<0)
+        return complex(sqrt((z_complex.getRe()+abs(z_complex))/2),-sqrt((-(z_complex.getRe())+abs(z_complex))/2));
+    else
+        return complex(sqrt((z_complex.getRe()+abs(z_complex))/2),sqrt((-(z_complex.getRe())+abs(z_complex))/2));
+    }
+
+complex root_square(const complex& z_complex,int i=1)
+{
+    if(i==1)
+    {
+        if(z_complex.getIm()<0)
+                return complex(sqrt((z_complex.getRe()+abs(z_complex))/2),sqrt(((z_complex.getRe())+abs(z_complex))/2));
+                else
+                return complex(sqrt((z_complex.getRe()+abs(z_complex))/2),sqrt((-(z_complex.getRe())+abs(z_complex))/2));
+
+    }
+    else if(i==2)
+    {
+        if(z_complex.getIm()<0)
+            return complex(-sqrt((z_complex.getRe()+abs(z_complex))/2),-sqrt(((z_complex.getRe())+abs(z_complex))/2));
+            else
+            return complex(-sqrt((z_complex.getRe()+abs(z_complex))/2),-sqrt((-(z_complex.getRe())+abs(z_complex))/2));
+    }
 }
 std::istream& operator>>(std::istream& stream, complex& z_complex)
 {

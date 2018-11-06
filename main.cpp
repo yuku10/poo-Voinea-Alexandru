@@ -4,6 +4,7 @@
 #include "complex.cpp"
 #include <sstream>
 #include <string>
+#include <math.h>
 int main()
 {
     complex z1;
@@ -14,6 +15,16 @@ int main()
     // numar=ToString(z2);
     // std::cout<<numar<<"\n";
     //std::cout<<ToString(z1)<<"\n";
+    std::string numar;
+    std::cout<<"Numarul de tip string";
+    std::cin>>numar;
+    try{
+    complex z25=complex(numar);
+    }
+    catch(const std::runtime_error&e)
+    {
+        std::cout<<e.what();
+    }
     std::cout<<"\n";
     /*complex z3;
     z3=+(z1);
@@ -94,14 +105,14 @@ int main()
     std::cin>>v1;
     z1/=v1;
     z1.print();*/
-    complex z3;
+    /*complex z3;
     z3.Conjugate(z1);
     z3.print();
     std::cout<<"\n Modulul unui numar complex:";
     double m;
     m=abs(z1);
     std::cout<<m<<"\n";
-    /*try
+    try
     {
     complex z20=z1/z2;
     }
@@ -118,5 +129,6 @@ int main()
     {
         std::cout<<e.what();
     }*/
+   std::cout<<root_square(z1,2);
     return 0;
 }

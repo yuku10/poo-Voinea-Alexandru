@@ -2,13 +2,15 @@
 #define COMPLEX_H_INCLUDED
 #include <sstream>
 #include <string>
+#include <cmath>
+#include <math.h>
 class complex
 
 {
 
 public:
-    double getRe(); //metode de setat si furnizat
-    double getIm();
+    double getRe()const; //metode de setat si furnizat
+    double getIm()const;
     void setRe(double Re);
     void setIm(double Im);
     complex(const complex& c);
@@ -49,7 +51,9 @@ public:
     complex Conjugate(const complex& z_complex);
     friend std::string ToString(const complex&z_complex);
     operator std::string() const;
-    friend double abs(complex&z_complex);
+    friend double abs(const complex&);
+    friend complex sqrt(const complex&z_complex);
+    friend complex root_square(const complex&,int);
     friend std::istream& operator>>(std::istream& stream,complex& z_complex);
     friend std::ostream& operator<<(std::ostream& stream,const complex& z_complex);
 
